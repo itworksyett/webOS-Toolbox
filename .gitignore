@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+dist/
+*.spec
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Logs & Diagnostics
+*.log
+*report.txt
+*diag.txt
+
+# Backups
+backups/*.tar.gz
+backups/*
+!backups/.gitkeep

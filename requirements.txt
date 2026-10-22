@@ -1,0 +1,2 @@
+pywebview>=5.0.0
+packaging>=21.0
