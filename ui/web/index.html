@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>webOS Toolbox</title>
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="brand">
+          <div class="brand-text">
+            <div class="brand-title"><span class="brand-bold">webOS</span> <span class="brand-light">Toolbox</span></div>
+            <span class="brand-sub">Desktop Utility</span>
+          </div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-tab="dashboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          <span>Dashboard</span>
+        </button>
+
+        <button class="nav-item" data-tab="optimizer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+          </svg>
+          <span>Optimizer</span>
+        </button>
+
+        <button class="nav-item" data-tab="root">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          <span>Root Assistant</span>
+        </button>
+
+        <button class="nav-item" data-tab="terminal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="4 17 10 11 4 5"></polyline>
+            <line x1="12" y1="19" x2="20" y2="19"></line>
+          </svg>
+          <span>Root Terminal</span>
+        </button>
+
+        <button class="nav-item" data-tab="apps">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+          </svg>
+          <span>Apps & Sideload</span>
+        </button>
+
+        <button class="nav-item" data-tab="tools">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+          <span>Quick Tools</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="footer-status">
+          <span class="status-dot offline" id="footer-dot"></span>
+          <span class="status-text" id="footer-status-text">Disconnected</span>
+        </div>
+        <button class="footer-version-btn" id="btn-check-update" title="Open GitHub project & releases">
+          <svg class="gh-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path>
+          </svg>
+          <span class="ver-text">v1.2.0 • Up to date</span>
+          <span class="gh-link-arrow">↗</span>
+        </button>
+        <button class="footer-version-btn" id="btn-report-issue" title="Report a bug or crash to GitHub Issues">
+          <svg class="gh-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          <span class="ver-text">Report Bug / Crash</span>
+          <span class="gh-link-arrow">↗</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-area">
+      <!-- Top Header Bar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <div class="topbar-context">
+            <span class="context-tag" id="context-pill">LG webOS</span>
+            <span class="context-separator">/</span>
+            <span class="context-active" id="page-title">System Dashboard</span>
+          </div>
+          <p class="topbar-sub" id="page-subtitle">Real-time hardware status, storage breakdown, and quick console</p>
+        </div>
+
+        <!-- Center TV Remote & Active App Strip -->
+        <div class="hdr-tv-strip" id="hdr-tv-strip" style="display: none;">
+          <div class="active-app-chip" id="hdr-active-app" title="Currently running on TV">
+            <span class="pulse-dot"></span>
+            <span id="hdr-app-title">Home Menu</span>
+          </div>
+
+          <div class="hdr-quick-actions">
+            <button class="hdr-btn" id="hdr-btn-screen-off" title="Turn screen off (keep audio playing)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+                <line x1="2" y1="2" x2="22" y2="22"></line>
+              </svg>
+              <span class="btn-text-responsive">Screen Off</span>
+            </button>
+
+            <button class="hdr-btn" id="hdr-btn-mute" title="Toggle audio mute">
+              <svg id="mute-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              </svg>
+            </button>
+
+            <button class="hdr-btn" id="hdr-btn-home" title="Return to webOS Home">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="topbar-controls">
+          <!-- Connection Bar -->
+          <div class="connection-bar">
+            <div class="ip-pill">
+              <svg class="ip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+              </svg>
+              <input type="text" id="tv-ip" value="" placeholder="192.168.1.xxx" spellcheck="false" autocomplete="off">
+              <span class="ping-pill" id="ping-badge" style="display: none;">
+                <span class="ping-dot"></span>
+                <span id="ping-text">Online</span>
+              </span>
+            </div>
+
+            <button class="btn btn-primary" id="btn-connect" title="Establish Telnet/Luna connection">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+              </svg>
+              <span id="btn-connect-label">Connect</span>
+            </button>
+
+            <button class="btn btn-secondary" id="btn-scan" title="Discover LG TVs on local subnet">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 3a9 9 0 0 1 9 9"></path>
+                <line x1="12" y1="12" x2="16.5" y2="7.5"></line>
+              </svg>
+              <span id="btn-scan-label">Scan LAN</span>
+            </button>
+
+            <button class="btn btn-secondary" id="btn-open-wizard" title="Open Setup & Connection Wizard">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              <span>Setup Wizard</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Metric Cards Row (4 Columns) -->
+      <section class="metrics-grid">
+        <!-- Card 1: Device & Root -->
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-label">DEVICE</span>
+            <span class="status-badge offline" id="badge-root">○ Offline</span>
+          </div>
+          <div class="metric-value" id="val-model">Not Connected</div>
+          <div class="metric-sub" id="val-firmware">webOS: -- • FW: --</div>
+          <div class="metric-root-pill" id="val-root-pill">
+            <svg class="root-shield-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            <span id="val-root-ver">Root: Awaiting Device</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Processor & SoC -->
+        <div class="metric-card">
+          <div class="metric-header">
+            <div class="metric-label-wrap">
+              <span class="metric-label">CPU & SOC</span>
+              <span class="live-pill" id="live-indicator-cpu"><span class="pulse-dot"></span> Live</span>
+            </div>
+            <span class="metric-tag" id="val-cpu-tag">4C • m7621</span>
+          </div>
+          <div class="val-spark-row">
+            <div class="metric-value" id="val-cpu-pct">-- % Load</div>
+            <div class="mini-sparkline" id="cpu-sparkline"></div>
+          </div>
+          <div class="progress-track">
+            <div class="progress-bar" id="cpu-progress" style="width: 0%;"></div>
+          </div>
+          <div class="metric-sub" id="val-cpu-sub">Quad-Core ARM Cortex-A53 • Load: --</div>
+        </div>
+
+        <!-- Card 3: Memory (Real-time Telemetry) -->
+        <div class="metric-card">
+          <div class="metric-header">
+            <div class="metric-label-wrap">
+              <span class="metric-label">RAM & SWAP</span>
+              <span class="live-pill" id="live-indicator"><span class="pulse-dot"></span> Live</span>
+            </div>
+            <span class="metric-tag" id="val-swappiness">swap: --</span>
+          </div>
+          <div class="val-spark-row">
+            <div class="metric-value" id="val-ram">-- / -- MB</div>
+            <div class="mini-sparkline" id="ram-sparkline"></div>
+          </div>
+          <div class="progress-track">
+            <div class="progress-bar" id="ram-progress" style="width: 0%;"></div>
+          </div>
+          <div class="metric-sub" id="val-swap">Flash Swap: -- MB</div>
+        </div>
+
+        <!-- Card 4: Health Score -->
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-label">HEALTH</span>
+            <span class="metric-tag" id="val-issues-tag">Pending</span>
+          </div>
+          <div class="metric-value" id="val-score">-- %</div>
+          <div class="progress-track">
+            <div class="progress-bar health-bar" id="health-progress" style="width: 0%;"></div>
+          </div>
+          <div class="metric-sub" id="val-score-label">Awaiting Connection</div>
+        </div>
+      </section>
+
+      <!-- View Containers -->
+      <div class="view-content">
+        <!-- View 1: System Dashboard -->
+        <div class="tab-pane active" id="pane-dashboard">
+          <div class="section-toolbar">
+            <div class="section-title-wrap">
+              <h2 class="section-title">TV Environment & System Resources</h2>
+              <span class="section-desc">Hardware identity, storage partitions, and live controls.</span>
+            </div>
+            <div class="section-actions">
+              <button class="btn btn-secondary btn-sm" id="btn-dash-refresh">Refresh Stats</button>
+              <button class="btn btn-secondary btn-sm" id="btn-dash-flush">Flush RAM</button>
+            </div>
+          </div>
+
+          <div class="dash-grid">
+            <!-- Card 1: Display & Hardware Identity -->
+            <div class="dash-card">
+              <div class="dash-card-header">
+                <span class="dash-card-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect>
+                    <polyline points="17 2 12 7 7 2"></polyline>
+                  </svg>
+                  Hardware & OS Platform
+                </span>
+                <span class="dash-card-badge" id="dash-platform-badge">webOS</span>
+              </div>
+              <div class="dash-info-list">
+                <div class="dash-info-row">
+                  <span class="dash-info-label">Model Name</span>
+                  <span class="dash-info-val" id="dash-val-model">Awaiting Connection</span>
+                </div>
+                <div class="dash-info-row">
+                  <span class="dash-info-label">Display Panel</span>
+                  <span class="dash-info-val" id="dash-val-display">4K UHD (3840×2160)</span>
+                </div>
+                <div class="dash-info-row">
+                  <span class="dash-info-label">SoC Processor</span>
+                  <span class="dash-info-val" id="dash-val-soc">Quad-Core ARM Cortex-A53 (m7621)</span>
+                </div>
+                <div class="dash-info-row">
+                  <span class="dash-info-label">webOS Platform</span>
+                  <span class="dash-info-val" id="dash-val-webos">webOS -- • FW: --</span>
+                </div>
+                <div class="dash-info-row">
+                  <span class="dash-info-label">Kernel Release</span>
+                  <span class="dash-info-val" id="dash-val-kernel">Linux --</span>
+                </div>
+                <div class="dash-info-row">
+                  <span class="dash-info-label">System Uptime</span>
+                  <span class="dash-info-val" id="dash-val-uptime">--</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2: Storage Partitions & Flash Space -->
+            <div class="dash-card">
+              <div class="dash-card-header">
+                <span class="dash-card-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                    <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                    <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                  </svg>
+                  Storage & Flash Partitions
+                </span>
+                <span class="dash-card-badge">eMMC Flash</span>
+              </div>
+              <div class="dash-info-list">
+                <div class="dash-storage-item">
+                  <div class="dash-storage-top">
+                    <span class="dash-info-label">App Partition (/media)</span>
+                    <span class="dash-info-val" id="dash-val-storage-app">-- MB / -- MB</span>
+                  </div>
+                  <div class="dash-storage-bar">
+                    <div class="dash-storage-fill" id="dash-storage-app-bar" style="width: 0%;"></div>
+                  </div>
+                </div>
+
+                <div class="dash-storage-item">
+                  <div class="dash-storage-top">
+                    <span class="dash-info-label">Data & Cache (/mnt/lg/cmn_data)</span>
+                    <span class="dash-info-val" id="dash-val-storage-data">-- MB / -- MB</span>
+                  </div>
+                  <div class="dash-storage-bar">
+                    <div class="dash-storage-fill data" id="dash-storage-data-bar" style="width: 0%;"></div>
+                  </div>
+                </div>
+
+                <div class="dash-info-row" style="margin-top: 6px;">
+                  <span class="dash-info-label">Flash Swap File</span>
+                  <span class="dash-info-val" id="dash-val-swap-status">100 MB Active (/media/developer/swapfile)</span>
+                </div>
+                <div class="dash-info-row">
+                  <span class="dash-info-label">Kernel Swappiness</span>
+                  <span class="dash-info-val" id="dash-val-swap-ratio">30 (Aggressive Low-Latency)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: Active Media & Quick TV Controls -->
+            <div class="dash-card">
+              <div class="dash-card-header">
+                <span class="dash-card-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                  Media & Display Console
+                </span>
+                <span class="dash-card-badge" id="dash-media-badge">Live</span>
+              </div>
+              <div class="dash-info-list">
+                <div class="dash-info-row">
+                  <span class="dash-info-label">Foreground App</span>
+                  <span class="dash-info-val" id="dash-val-activeapp">Home Menu</span>
+                </div>
+                <div class="dash-info-row">
+                  <span class="dash-info-label">Audio Output</span>
+                  <span class="dash-info-val" id="dash-val-volume">TV Speaker • Vol: 5</span>
+                </div>
+                <div class="dash-info-row">
+                  <span class="dash-info-label">Display Status</span>
+                  <span class="dash-info-val" id="dash-val-display-state">Panel Active</span>
+                </div>
+              </div>
+              <div class="dash-actions-row">
+                <button class="btn btn-secondary btn-sm" id="btn-dash-screenoff-action">Screen Off</button>
+                <button class="btn btn-secondary btn-sm" id="btn-dash-mute-action">Toggle Mute</button>
+                <button class="btn btn-secondary btn-sm" id="btn-dash-home-action">webOS Home</button>
+              </div>
+            </div>
+
+            <!-- Card 4: Network & Daemon Security -->
+            <div class="dash-card">
+              <div class="dash-card-header">
+                <span class="dash-card-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  </svg>
+                  Network & Service Daemons
+                </span>
+                <span class="dash-card-badge">Security</span>
+              </div>
+              <div class="dash-info-list">
+                <div class="dash-info-row">
+                  <span class="dash-info-label">Device IPv4</span>
+                  <span class="dash-info-val" id="dash-val-ip">--</span>
+                </div>
+                <div class="dash-info-row">
+                  <span class="dash-info-label">Telnet Daemon (Port 23)</span>
+                  <span class="dash-info-val" id="dash-val-telnet" style="color: var(--accent-green);">Active (uid 0)</span>
+                </div>
+                <div class="dash-info-row">
+                  <span class="dash-info-label">Luna Bus (Port 3000)</span>
+                  <span class="dash-info-val" id="dash-val-ssap" style="color: var(--accent-green);">Connected</span>
+                </div>
+                <div class="dash-info-row">
+                  <span class="dash-info-label">Boot Autostart Script</span>
+                  <span class="dash-info-val" id="dash-val-init">/var/lib/webosbrew/init.d/05-performance</span>
+                </div>
+                <div class="dash-info-row">
+                  <span class="dash-info-label">Telemetry Daemons</span>
+                  <span class="dash-info-val" id="dash-val-rdxd" style="color: var(--accent-green);">rdxd & uploadd blocked</span>
+                </div>
+                <div class="dash-info-row" style="margin-top: 4px; padding-top: 6px; border-top: 1px solid rgba(255, 255, 255, 0.04);">
+                  <span class="dash-info-label">LG Firmware OTA Shield</span>
+                  <div style="display: flex; align-items: center; gap: 6px;">
+                    <span class="status-badge online" id="dash-val-ota">Active (Protected)</span>
+                    <button class="btn btn-secondary btn-xs" id="btn-toggle-ota" title="Configure LG update domain blocking">Configure</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 5: Active System Tasks & Memory Bottlenecks -->
+            <div class="dash-card" style="grid-column: span 2;">
+              <div class="dash-card-header">
+                <span class="dash-card-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                  </svg>
+                  Active System Tasks & Memory Bottlenecks
+                </span>
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <span class="dash-card-badge" id="dash-procs-badge">Live Monitor</span>
+                  <button class="btn btn-secondary btn-xs" id="btn-dash-refresh-procs" title="Refresh running processes">Refresh</button>
+                </div>
+              </div>
+              <div class="dash-procs-table">
+                <div class="procs-header-row">
+                  <span class="proc-col-pid">PID</span>
+                  <span class="proc-col-name">Process Name</span>
+                  <span class="proc-col-cpu">CPU %</span>
+                  <span class="proc-col-mem">RAM %</span>
+                  <span class="proc-col-act">Action</span>
+                </div>
+                <div class="procs-body" id="dash-procs-body">
+                  <div class="proc-empty-line">Connect to TV to inspect active system tasks.</div>
+                </div>
+              </div>
+              <div class="dash-actions-row" style="justify-content: space-between; align-items: center;">
+                <span class="dash-sub-note">Kill unresponsive background tasks or clear browser RAM spikes instantly without rebooting.</span>
+                <button class="btn btn-accent btn-sm" id="btn-dash-kill-lag" title="Close foreground apps and flush dormant WebAppMgr caches">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px;">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                  </svg>
+                  <span>Flush Background Lag</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- View 2: Optimizer -->
+        <div class="tab-pane" id="pane-optimizer">
+          <div class="section-toolbar">
+            <div class="section-title-wrap">
+              <h2 class="section-title">Diagnostic Findings & Performance Stack</h2>
+              <span class="section-desc" id="findings-summary">Connect to TV to inspect configuration bottlenecks.</span>
+            </div>
+            <div class="section-actions">
+              <button class="btn btn-secondary btn-sm" id="btn-re-audit">Run Audit</button>
+              <button class="btn btn-accent btn-sm" id="btn-fix-all" disabled>Fix All Issues</button>
+            </div>
+          </div>
+
+          <div class="findings-container" id="findings-list">
+            <div class="placeholder-card">
+              <div class="placeholder-title">Ready for Diagnostics</div>
+              <div class="placeholder-desc">Click 'Connect' or 'Scan LAN' above to query device performance metrics.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- View 2: Root Assistant & Hardware Matrix -->
+        <div class="tab-pane" id="pane-root">
+          <div class="section-toolbar">
+            <div class="section-title-wrap">
+              <h2 class="section-title">Root Assistant & Exploit Matrix</h2>
+              <span class="section-desc">Assess firmware vulnerability tier, execute automated exploits, and browse tested models.</span>
+            </div>
+            <div class="section-actions">
+              <button class="btn btn-secondary btn-sm" id="btn-sync-matrix" title="Sync compatibility list with remote backend">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 13px; height: 13px;">
+                  <polyline points="23 4 23 10 17 10"></polyline>
+                  <polyline points="1 20 1 14 7 14"></polyline>
+                  <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                </svg>
+                <span id="btn-sync-matrix-label">Sync Matrix</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="root-pane-scroll">
+            <!-- 1. Live Device Status Hero -->
+            <div class="root-card" id="root-status-card">
+              <div class="root-card-top-row">
+                <div class="root-status-header">
+                  <span class="status-dot gray" id="root-card-dot"></span>
+                  <div>
+                    <h3 class="root-card-title" id="root-card-title">Awaiting Device Inspection</h3>
+                    <span class="root-card-sub" id="root-card-sub">Connect to TV to inspect root vulnerability and firmware tier</span>
+                  </div>
+                </div>
+                <span class="badge" id="root-eval-badge">Awaiting Connection</span>
+              </div>
+              <p class="root-card-desc" id="root-card-desc">Connect to your LG TV to evaluate root eligibility without brick risk.</p>
+              <div class="root-card-action">
+                <button class="btn btn-primary btn-sm" id="btn-root-exec" disabled>Execute Exploit</button>
+              </div>
+            </div>
+
+            <!-- 2. Dual Exploit Pathways (Web Exploit vs DevMode Elevation) -->
+            <div class="root-methods-grid">
+              <!-- Method 1: RootMy.tv 1-Click Exploit -->
+              <div class="root-method-card">
+                <div class="root-method-header">
+                  <span class="badge badge-tested">webOS 3.5 – 6.x</span>
+                  <span class="root-method-title">RootMy.tv 1-Click Browser Exploit</span>
+                </div>
+                <div class="root-method-desc">
+                  Zero-hardware root exploit via the built-in webOS web browser. Ideal for 2017–2021 LG Smart TVs:
+                </div>
+                <ol class="root-steps-list">
+                  <li>Ensure TV and computer are on the same local Wi-Fi or Ethernet network.</li>
+                  <li>Launch built-in <strong>Web Browser</strong> on your LG TV.</li>
+                  <li>Navigate to <code>https://rootmy.tv</code> (or click the button below to launch on TV).</li>
+                  <li>Drag the on-screen slider to the right using your Magic Remote.</li>
+                  <li>The TV will elevate root privileges, install Homebrew Channel, and reboot.</li>
+                </ol>
+                <div class="root-method-footer">
+                  <button class="btn btn-secondary btn-sm" id="btn-launch-browser-root" title="Opens built-in web browser on TV to rootmy.tv">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 13px; height: 13px;">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="2" y1="12" x2="22" y2="12"></line>
+                      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    </svg>
+                    <span>Launch RootMy.tv on TV Screen</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Method 2: DevMode Privilege Escalation -->
+              <div class="root-method-card">
+                <div class="root-method-header">
+                  <span class="badge badge-community">webOS 7 / 22 / 23 / 24</span>
+                  <span class="root-method-title">DevMode Privilege Escalation (Crashd / DejaVu)</span>
+                </div>
+                <div class="root-method-desc">
+                  Two-stage privilege escalation for 2022–2024+ LG OLED and QNED models via official Developer Mode:
+                </div>
+                <ol class="root-steps-list">
+                  <li>Install official <strong>Developer Mode</strong> from LG Content Store on TV.</li>
+                  <li>Enable <strong>Dev Mode Status: ON</strong> and <strong>Key Server: ON</strong> in app.</li>
+                  <li>Pair using <strong>Mode B</strong> in this toolbox (downloads <code>webos_rsa</code> key).</li>
+                  <li>Click <strong>Execute Exploit</strong> — our toolbox injects the elevation daemon.</li>
+                  <li>Homebrew Channel & permanent Telnet root (port 23) will unlock automatically!</li>
+                </ol>
+                <div class="root-method-footer">
+                  <button class="btn btn-accent btn-sm" id="btn-goto-devmode-pair">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 13px; height: 13px;">
+                      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                    </svg>
+                    <span>Pair via DevMode (Wizard)</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. LG Hardware Compatibility Database Table -->
+            <div class="matrix-card">
+              <div class="matrix-header">
+                <div>
+                  <div class="matrix-title">LG TV Compatibility Database</div>
+                  <div class="matrix-sub">Verified exploit paths, SoC architectures, and community testing statuses</div>
+                </div>
+                <div class="matrix-search-wrap">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="matrix-search-icon">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                  <input type="text" id="matrix-search-input" placeholder="Search series (e.g. C2, UK6450, QNED)..." class="matrix-search-input">
+                </div>
+              </div>
+
+              <div class="matrix-table-wrap">
+                <table class="matrix-table">
+                  <thead>
+                    <tr>
+                      <th>TV Series / Family</th>
+                      <th>webOS Version</th>
+                      <th>SoC Chipset</th>
+                      <th>Recommended Exploit</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="matrix-tbody">
+                    <!-- Populated dynamically by JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- View 3.5: Root Terminal -->
+        <div class="tab-pane" id="pane-terminal">
+          <div class="terminal-container">
+            <!-- Terminal Header -->
+            <div class="terminal-header-bar">
+              <div class="terminal-header-left">
+                <div class="terminal-traffic-lights">
+                  <span class="light red"></span>
+                  <span class="light yellow"></span>
+                  <span class="light green"></span>
+                </div>
+                <div class="terminal-session-info">
+                  <span class="terminal-session-title" id="terminal-session-title">root@LG-webOS</span>
+                  <span class="terminal-session-sub" id="terminal-session-sub">Port 23 / 22 • Interactive Shell</span>
+                </div>
+              </div>
+              <div class="terminal-header-right">
+                <button class="btn btn-secondary btn-xs" id="btn-terminal-copy" title="Copy console output">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px; margin-right: 4px;">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  Copy Output
+                </button>
+                <button class="btn btn-secondary btn-xs" id="btn-terminal-clear" title="Clear console screen">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px; margin-right: 4px;">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                  </svg>
+                  Clear Screen
+                </button>
+              </div>
+            </div>
+
+            <!-- Quick Presets Toolbar -->
+            <div class="terminal-presets-bar">
+              <span class="presets-label">Quick Commands:</span>
+              <div class="presets-scroll" id="terminal-presets">
+                <button class="preset-chip" data-cmd="dmesg | tail -n 40">dmesg (Kernel)</button>
+                <button class="preset-chip" data-cmd="logread | tail -n 50">logread (webOS)</button>
+                <button class="preset-chip" data-cmd="ps aux | grep -v '\[.*\]'">ps aux (Processes)</button>
+                <button class="preset-chip" data-cmd="df -h">df -h (Storage)</button>
+                <button class="preset-chip" data-cmd="free -m">free -m (RAM)</button>
+                <button class="preset-chip" data-cmd="netstat -tuln">netstat (Ports)</button>
+                <button class="preset-chip" data-cmd="uname -a && cat /etc/os-release">uname -a (OS Info)</button>
+                <button class="preset-chip" data-cmd="cat /proc/cpuinfo | head -n 25">cpuinfo</button>
+                <button class="preset-chip" data-cmd="luna-send -n 1 -f luna://com.webos.service.tv.power/power/reboot '{&quot;reason&quot;:&quot;SwReset&quot;}'">Reboot TV</button>
+              </div>
+            </div>
+
+            <!-- Terminal Screen -->
+            <div class="terminal-screen" id="terminal-screen">
+              <div class="terminal-line banner">================================================================</div>
+              <div class="terminal-line banner">  LG webOS Toolbox &mdash; Interactive Root Shell Console</div>
+              <div class="terminal-line banner" id="terminal-banner-host">  Host: LG Smart TV | Session: root (UID: 0, GID: 0)</div>
+              <div class="terminal-line banner">  Type shell commands below, or select any Quick Command preset.</div>
+              <div class="terminal-line banner">  Use [Arrow Up] / [Arrow Down] to navigate command history.</div>
+              <div class="terminal-line banner">================================================================</div>
+              <div class="terminal-output-body" id="terminal-output-body"></div>
+            </div>
+
+            <!-- Terminal Input Row -->
+            <div class="terminal-input-bar">
+              <span class="terminal-prompt-badge" id="terminal-prompt-badge">root@webos:~#</span>
+              <input type="text" id="terminal-input" class="terminal-input" placeholder="Type a shell command (e.g. ls -la /media/developer, dmesg, top)..." autocomplete="off" spellcheck="false">
+              <button class="btn btn-accent btn-sm" id="btn-terminal-exec">
+                <span>Run</span>
+                <span class="terminal-kbd-hint">↵</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- View 3: Apps & Sideload -->
+        <div class="tab-pane" id="pane-apps">
+          <div class="section-toolbar">
+            <div class="section-title-wrap">
+              <h2 class="section-title">App Sideloading & Essential Catalog</h2>
+              <span class="section-desc">Smart version detection, update advisor, 1-click PC uninstaller, and local IPK sideloading.</span>
+            </div>
+            <div class="section-actions">
+              <button class="btn btn-primary btn-sm" id="btn-sideload-local">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px; margin-right: 5px;">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                  <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                </svg>
+                <span>Sideload Local .IPK</span>
+              </button>
+              <button class="btn btn-secondary btn-sm" id="btn-refresh-apps">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px; margin-right: 5px;">
+                  <polyline points="23 4 23 10 17 10"></polyline>
+                  <polyline points="1 20 1 14 7 14"></polyline>
+                  <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                </svg>
+                <span>Check Updates & Sync</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Apps Filter & Search Bar -->
+          <div class="apps-filter-bar">
+            <div class="apps-search-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="apps-search-icon">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="apps-search-input" class="apps-search-box" placeholder="Search curated catalog & installed apps..." />
+              <button class="apps-search-clear" id="btn-clear-apps-search" style="display: none;">✕</button>
+            </div>
+            <div class="filter-chips-row" id="catalog-filter-chips">
+              <button class="filter-chip active" data-filter="all">All Apps <span class="chip-count" id="count-all">0</span></button>
+              <button class="filter-chip" data-filter="noroot">🟢 No Root <span class="chip-count" id="count-noroot">0</span></button>
+              <button class="filter-chip" data-filter="root">🔴 Root Required <span class="chip-count" id="count-root">0</span></button>
+              <button class="filter-chip" data-filter="installed">⚡ Installed on TV <span class="chip-count" id="count-installed">0</span></button>
+              <button class="filter-chip" data-filter="updates">⬆️ Updates Available <span class="chip-count" id="count-updates">0</span></button>
+            </div>
+          </div>
+
+          <!-- Curated Catalog Section -->
+          <div class="apps-section-header">
+            <span class="apps-section-badge">VERIFIED REPOSITORY</span>
+            <h3 class="apps-subheading">Curated webOS Homebrew Catalog</h3>
+          </div>
+
+          <div class="apps-grid" id="catalog-grid">
+            <!-- Dynamic catalog cards rendered by JavaScript -->
+            <div class="placeholder-card" style="grid-column: span 3;">
+              <div class="placeholder-title">Catalog Awaiting Connection</div>
+              <div class="placeholder-desc">Connect to TV to inspect installed packages and version updates.</div>
+            </div>
+          </div>
+
+          <!-- Installed TV Applications Manager & Uninstaller Section -->
+          <div class="installed-manager-section" id="installed-manager-section">
+            <div class="apps-section-header">
+              <div class="installed-header-flex">
+                <div>
+                  <span class="apps-section-badge">DEVICE PACKAGES</span>
+                  <h3 class="apps-subheading">Installed Applications Manager & Uninstaller</h3>
+                  <p class="installed-subdesc">Remove or launch any installed package (LG Content Store or Sideloaded) directly from your computer via Luna Bus.</p>
+                </div>
+                <div class="installed-stats-badge" id="installed-stats-badge">0 Packages Installed</div>
+              </div>
+            </div>
+            
+            <div class="installed-apps-table-container">
+              <table class="installed-apps-table">
+                <thead>
+                  <tr>
+                    <th>Application</th>
+                    <th>Package ID</th>
+                    <th>Version</th>
+                    <th>Origin</th>
+                    <th>Type</th>
+                    <th style="text-align: right;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="installed-apps-tbody">
+                  <tr>
+                    <td colspan="6" class="table-empty-cell">Connect to TV to inspect installed packages.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- View 4: Quick Tools -->
+        <div class="tab-pane" id="pane-tools">
+          <div class="section-toolbar">
+            <div class="section-title-wrap">
+              <h2 class="section-title">Remote Tools & Power</h2>
+              <span class="section-desc">Direct hardware control and live display messaging.</span>
+            </div>
+          </div>
+
+          <div class="tools-grid">
+            <!-- Toast notification sender -->
+            <div class="tool-card">
+              <div class="tool-card-title">On-Screen Toast Notification</div>
+              <div class="tool-card-desc">Send live pop-up banner to the TV display:</div>
+              <div class="toast-input-row">
+                <input type="text" id="toast-text" placeholder="Enter message to display on TV..." spellcheck="false">
+                <button class="btn btn-primary btn-sm" id="btn-send-toast">Send Toast</button>
+              </div>
+              <div class="chips-row">
+                <button class="chip" onclick="app.setToastPreset('Performance Optimized')">Performance Optimized</button>
+                <button class="chip" onclick="app.setToastPreset('Network Test OK')">Network Test OK</button>
+                <button class="chip" onclick="app.setToastPreset('Ready to Stream')">Ready to Stream</button>
+              </div>
+            </div>
+
+            <!-- Maintenance operations -->
+            <div class="tool-card">
+              <div class="tool-card-title">System Operations</div>
+              <div class="tool-card-desc">Low-level service control:</div>
+              <div class="ops-btn-row">
+                <button class="btn btn-secondary btn-sm" id="btn-flush-ram">Flush RAM Caches</button>
+                <button class="btn btn-secondary btn-sm" id="btn-reboot">Reboot TV</button>
+              </div>
+            </div>
+
+            <!-- LG Engineering & Service Menu -->
+            <div class="tool-card">
+              <div class="tool-card-header-row">
+                <div class="tool-card-title">LG Engineering & Service Menu</div>
+                <span class="tool-badge-mono">PIN: 0413</span>
+              </div>
+              <div class="tool-card-desc">Trigger official LG hardware calibration and technician testing modes via Luna Bus:</div>
+              <div class="tool-alert-box tool-alert-danger">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="tool-alert-icon">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                  <line x1="12" y1="9" x2="12" y2="13"></line>
+                  <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+                <span><strong>CRITICAL FACTORY MODE — DO NOT MODIFY REGISTERS IF UNSURE:</strong> Modifying panel timings, white balance, or ToolOpt registers without official LG technician manuals can cause an unrecoverable black screen. Default PIN: <strong>0413</strong> (or <strong>0000</strong>).</span>
+              </div>
+              <div class="ops-btn-row">
+                <button class="btn btn-secondary btn-sm" id="btn-launch-instart">Launch In-Start</button>
+                <button class="btn btn-secondary btn-sm" id="btn-launch-ezadjust">Launch Ez-Adjust</button>
+                <button class="btn btn-secondary btn-sm" id="btn-close-service">Close Service Window</button>
+              </div>
+            </div>
+
+            <!-- Configuration Backup & Restore -->
+            <div class="tool-card">
+              <div class="tool-card-header-row">
+                <div class="tool-card-title">Configuration Backup & Restore</div>
+                <span class="tool-badge-mono">Local .tar.gz</span>
+              </div>
+              <div class="tool-card-desc">Snapshot startup daemons (/var/lib/webosbrew), host filters, and configuration to local disk:</div>
+              <div class="ops-btn-row" style="margin-bottom: 8px;">
+                <button class="btn btn-primary btn-sm" id="btn-create-backup">Create Full Backup (.tar.gz)</button>
+                <button class="btn btn-secondary btn-sm" id="btn-refresh-backups">Refresh Backups</button>
+              </div>
+              <div class="backup-list-box" id="backup-list-box">
+                <div class="backup-empty">No local backups stored yet. Click 'Create Full Backup' above.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slim App Statusbar -->
+      <footer class="app-statusbar">
+        <div class="statusbar-left">
+          <span class="status-dot offline" id="status-conn-dot"></span>
+          <span id="status-conn-text">Disconnected</span>
+        </div>
+        <div class="statusbar-center" id="status-last-msg">
+          lg-webos-toolbox ready. Enter TV IP or click 'Scan LAN'.
+        </div>
+        <div class="statusbar-right">
+          <button class="statusbar-btn" id="btn-toggle-terminal" title="Toggle Terminal Log Drawer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="terminal-icon">
+              <polyline points="4 17 10 11 4 5"></polyline>
+              <line x1="12" y1="19" x2="20" y2="19"></line>
+            </svg>
+            <span>Activity Log</span>
+            <span class="log-count-pill" id="log-counter">1</span>
+            <span class="drawer-arrow" id="drawer-arrow">▴</span>
+          </button>
+        </div>
+      </footer>
+
+      <!-- Collapsible Terminal Drawer Overlay -->
+      <div class="terminal-drawer" id="terminal-drawer">
+        <div class="terminal-drawer-header">
+          <div class="terminal-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px;">
+              <polyline points="4 17 10 11 4 5"></polyline>
+              <line x1="12" y1="19" x2="20" y2="19"></line>
+            </svg>
+            <span>System Activity & Execution Log</span>
+          </div>
+          <div class="terminal-actions">
+            <button class="btn btn-secondary btn-sm" id="btn-copy-log">Copy</button>
+            <button class="btn btn-secondary btn-sm" id="btn-clear-log">Clear</button>
+            <button class="btn btn-secondary btn-sm" id="btn-close-terminal">Close ✕</button>
+          </div>
+        </div>
+        <div class="terminal-drawer-body" id="console-output">
+          <div class="log-line"><span class="log-time">[Init]</span> <span class="log-tag tag-info">[INFO]</span> lg-webos-toolbox ready. Enter TV IP or click 'Scan LAN'.</div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- OTA Shield Safety Modal -->
+  <div class="modal-backdrop" id="ota-modal" style="display: none;">
+    <div class="safety-modal">
+      <div class="modal-header">
+        <div class="modal-title-row">
+          <svg class="modal-warn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+            <line x1="12" y1="9" x2="12" y2="13"></line>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+          <h3 class="modal-title">Firmware Protection: LG OTA Shield</h3>
+        </div>
+        <button class="modal-close-btn" id="btn-ota-cancel-top">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-desc">
+          Modifying firmware update domain routing in <code>/etc/hosts</code> on the TV.
+        </p>
+        <div class="modal-callout">
+          <div class="modal-callout-title">Critical Safety Information:</div>
+          <ul class="modal-callout-list">
+            <li><strong>Blocks:</strong> Automatic background downloads from <code>snu.lge.com</code> and <code>su.lge.com</code>.</li>
+            <li><strong>Protects:</strong> Guarantees that silent overnight LG firmware upgrades will NOT strip your Root privileges, Homebrew Channel, and startup daemons.</li>
+            <li><strong>Notice:</strong> Official LG security patches and webOS feature updates will also be paused while this shield is active.</li>
+          </ul>
+        </div>
+        <p class="modal-confirm-question" id="ota-modal-question">
+          Do you understand the risks and want to update the LG Firmware OTA Shield?
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="btn-ota-cancel">Cancel</button>
+        <button class="btn btn-countdown-danger" id="btn-ota-confirm" disabled>
+          <span class="countdown-spinner"></span>
+          <span id="ota-confirm-text">Please wait (5s)...</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Optimization Tweaks Safety Modal -->
+  <div class="modal-backdrop" id="tweaks-modal" style="display: none;">
+    <div class="safety-modal">
+      <div class="modal-header">
+        <div class="modal-title-row">
+          <svg class="modal-warn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+          </svg>
+          <h3 class="modal-title">System Optimization Stack: Kernel Changes</h3>
+        </div>
+        <button class="modal-close-btn" id="btn-tweaks-cancel-top">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-desc">
+          You are about to apply kernel performance tuning and background service optimizations to webOS:
+        </p>
+        <div class="modal-callout">
+          <div class="modal-callout-title">Complete 9-Step Optimization Stack:</div>
+          <ul class="modal-callout-list">
+            <li><strong>Flash Swap (100 MB):</strong> Validates / mounts <code>/media/developer/swapfile</code> to eliminate out-of-memory crashes during 4K streaming.</li>
+            <li><strong>4K Streaming TCP Buffers (4 MB):</strong> Expands socket buffers (<code>rmem_max=4MB</code>) to eradicate buffering stalls in Lampa and TorrServer.</li>
+            <li><strong>Disable Home Screen Ads:</strong> Disables sponsored promo videos and ad banners via Luna Bus (<code>tv.home.adEnable: false</code>).</li>
+            <li><strong>Swappiness (30):</strong> Lowers VM paging aggressiveness from 60 to 30 for low-latency app switching.</li>
+            <li><strong>VFS Cache Pressure (50):</strong> Retains directory and inode caches in RAM, speeding up UI rendering.</li>
+            <li><strong>Disable Crash Loggers:</strong> Halts background trace daemons (<code>rdxd</code>, <code>cpud</code>, <code>uploadd</code>) to stop flash wear and CPU spikes.</li>
+            <li><strong>LG Telemetry Blocker:</strong> Blocks LG user tracking and ad telemetry in <code>/etc/hosts</code>.</li>
+            <li><strong>Compositor & CPU Governor:</strong> Boosts Wayland priority (<code>nice -n -5</code>) and lowers CPU governor latency threshold.</li>
+            <li><strong>Boot Persistence:</strong> Generates startup script in <code>/var/lib/webosbrew/init.d/05-performance</code>.</li>
+          </ul>
+        </div>
+        <p class="modal-confirm-question">
+          All modifications are safe, non-destructive, and can be reviewed in the terminal log. Do you wish to continue?
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="btn-tweaks-cancel">Cancel</button>
+        <button class="btn btn-countdown-danger" id="btn-tweaks-confirm" disabled>
+          <span class="countdown-spinner"></span>
+          <span id="tweaks-confirm-text">Please wait (5s)...</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- First-Run Setup & Connection Wizard Modal -->
+  <div class="modal-backdrop" id="wizard-modal" style="display: none;">
+    <div class="wizard-dialog">
+      <div class="wizard-header">
+        <div class="wizard-title-group">
+          <div class="wizard-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+          </div>
+          <div>
+            <h3 class="wizard-title">webOS Setup & Connection Wizard</h3>
+            <span class="wizard-subtitle">Quickly discover, pair Developer Mode, or root any LG Smart TV</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Discovery & Diagnostics Bar -->
+      <div class="wizard-scan-strip">
+        <div class="wizard-scan-input-wrap">
+          <span class="wizard-scan-label">Target TV IP:</span>
+          <input type="text" id="wizard-ip-input" class="wizard-input-ip" value="" placeholder="192.168.1.xxx">
+        </div>
+        <button class="btn btn-secondary btn-sm" id="btn-wizard-scan">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="wizard-scan-icon">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M12 3a9 9 0 0 1 9 9"></path>
+            <line x1="12" y1="12" x2="16.5" y2="7.5"></line>
+          </svg>
+          <span id="wizard-scan-btn-text">Scan Network</span>
+        </button>
+        <div class="wizard-status-pill" id="wizard-status-pill">
+          <span class="status-dot gray" id="wizard-status-dot"></span>
+          <span id="wizard-status-text">Click 'Scan Network' to probe your TV</span>
+        </div>
+      </div>
+
+      <!-- Wizard Navigation Modes -->
+      <div class="wizard-nav-tabs">
+        <button class="wizard-tab-btn active" data-wizard-tab="devmode">
+          <span class="wizard-badge-step">Mode B</span>
+          <span>Developer Mode (No Root)</span>
+        </button>
+        <button class="wizard-tab-btn" data-wizard-tab="root">
+          <span class="wizard-badge-step">Mode A</span>
+          <span>Root Shell (Telnet / SSH)</span>
+        </button>
+      </div>
+
+      <!-- Tab Content 1: Developer Mode (Mode B) -->
+      <div class="wizard-tab-content active" id="wizard-tab-devmode">
+        <div class="wizard-step-card">
+          <div class="wizard-step-header">
+            <span class="wizard-step-num">1</span>
+            <div class="wizard-step-title">Install Developer Mode on your LG TV (No Root Needed)</div>
+          </div>
+          <div class="wizard-step-body">
+            <p>Works on <strong>all webOS models</strong> (webOS 3.5 through webOS 24). Allows direct sideloading of YouTube AdFree, Homebrew Channel, TorrServer, and custom IPKs without root privileges:</p>
+            <ol class="wizard-instructions-list">
+              <li>Open <strong>Apps / LG Content Store</strong> on your LG TV.</li>
+              <li>Search for <strong>"Developer Mode"</strong> and install the official LG app.</li>
+              <li>Launch the app and log in with your free LG Developer account.</li>
+              <li>Turn <strong>Dev Mode Status</strong> to <strong>ON</strong> and turn <strong>Key Server</strong> to <strong>ON</strong>.</li>
+              <li>Look at the TV screen — note the <strong>6-character Passphrase</strong> shown.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="wizard-pair-card">
+          <div class="wizard-pair-title">Pair with Developer Mode (Port 9922)</div>
+          <div class="wizard-pair-form">
+            <div class="wizard-form-field">
+              <label for="wizard-devmode-pass">6-Character Passphrase from TV:</label>
+              <input type="text" id="wizard-devmode-pass" maxlength="6" placeholder="A1B2C3" class="wizard-input-mono">
+            </div>
+            <button class="btn btn-primary" id="btn-wizard-devmode-connect">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px;">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+              </svg>
+              <span>Pair & Connect DevMode</span>
+            </button>
+          </div>
+          <div class="wizard-feedback" id="wizard-devmode-msg"></div>
+        </div>
+
+        <div class="wizard-root-link-bar">
+          <span>Looking for permanent root access instead of developer mode?</span>
+          <button class="btn btn-secondary btn-xs" id="btn-wizard-goto-root">Open Root Assistant ➔</button>
+        </div>
+      </div>
+
+      <!-- Tab Content 2: Root Shell (Mode A) -->
+      <div class="wizard-tab-content" id="wizard-tab-root">
+        <div class="wizard-step-card">
+          <div class="wizard-step-header">
+            <span class="wizard-step-num">1</span>
+            <div class="wizard-step-title">Connect to Root Shell (Telnet / SSH)</div>
+          </div>
+          <div class="wizard-step-body">
+            <p>For TVs that already have <strong>Homebrew Channel</strong> installed or an open root Telnet shell on port 23:</p>
+            <div class="wizard-pair-form" style="margin-top: 12px;">
+              <div class="wizard-form-field">
+                <label for="wizard-root-ip">TV IP Address:</label>
+                <input type="text" id="wizard-root-ip" class="wizard-input-ip" value="" placeholder="192.168.1.xxx">
+              </div>
+              <button class="btn btn-primary" id="btn-wizard-root-connect">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px;">
+                  <polyline points="4 17 10 11 4 5"></polyline>
+                  <line x1="12" y1="19" x2="20" y2="19"></line>
+                </svg>
+                <span>Connect Root Shell (Port 23)</span>
+              </button>
+            </div>
+            <div class="wizard-feedback" id="wizard-root-msg"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wizard Footer -->
+      <div class="wizard-footer">
+        <label class="wizard-chk-label">
+          <input type="checkbox" id="wizard-chk-startup">
+          <span>Show this wizard on startup when disconnected</span>
+        </label>
+        <button class="btn btn-secondary" id="btn-wizard-skip">Skip to Dashboard</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- App Improvements & Changelog Modal -->
+  <div class="modal-backdrop" id="changelog-modal" style="display: none;">
+    <div class="safety-modal changelog-dialog">
+      <div class="modal-header">
+        <div class="modal-title-row">
+          <div class="changelog-icon-wrap" id="changelog-icon-container">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 22px; height: 22px;">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+          </div>
+          <div>
+            <h3 class="modal-title" id="changelog-app-title">Application Improvements</h3>
+            <span class="changelog-meta" id="changelog-app-meta">Version details and updates</span>
+          </div>
+        </div>
+        <button class="modal-close-btn" id="btn-changelog-close-top">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="changelog-highlights" id="changelog-highlights-box">
+          <div class="changelog-heading">Key Features & What's New:</div>
+          <ul class="changelog-list" id="changelog-list"></ul>
+        </div>
+        <div class="changelog-footer-meta">
+          <span id="changelog-release-date">Release Date: Unknown</span>
+          <a href="#" target="_blank" id="changelog-source-link" class="external-link">View Project Repository ↗</a>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="btn-changelog-close">Close</button>
+        <button class="btn btn-primary" id="btn-changelog-action">Install App</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- App Uninstall Confirmation Modal -->
+  <div class="modal-backdrop" id="uninstall-modal" style="display: none;">
+    <div class="safety-modal">
+      <div class="modal-header">
+        <div class="modal-title-row">
+          <svg class="modal-warn-icon" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            <line x1="10" y1="11" x2="10" y2="17"></line>
+            <line x1="14" y1="11" x2="14" y2="17"></line>
+          </svg>
+          <h3 class="modal-title">Uninstall Application</h3>
+        </div>
+        <button class="modal-close-btn" id="btn-uninstall-cancel-top">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-desc">
+          Are you sure you want to completely uninstall <strong id="uninstall-app-title">this app</strong> from your TV?
+        </p>
+        <div class="modal-callout" style="border-left: 3px solid #ef4444; background: rgba(239, 68, 68, 0.08);">
+          <div class="modal-callout-title" style="color: #ef4444;">Uninstallation Details:</div>
+          <ul class="modal-callout-list">
+            <li><strong>Package ID:</strong> <code id="uninstall-app-id">com.example.app</code></li>
+            <li><strong>Origin:</strong> <span id="uninstall-app-origin">Sideloaded</span></li>
+            <li><strong>Data Cleanup:</strong> The package, its configuration, and associated background daemons will be removed via Luna Bus.</li>
+          </ul>
+        </div>
+        <p class="modal-confirm-question">
+          This operation is permanent. You can reinstall the app anytime from the catalog or LG Content Store.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="btn-uninstall-cancel">Cancel</button>
+        <button class="btn btn-danger" id="btn-uninstall-confirm">
+          <span>Uninstall from TV</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
